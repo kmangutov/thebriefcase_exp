@@ -29,18 +29,21 @@ function enumerate_profile_properties(member)
 {
 	var elem = document.getElementById("textarea");
 	elem.innerHTML += "<table>";
-
+	var myMap = new Ma();
 	var property;
 	for(property in member)
 	{
 		console.log("Name: " + property);
 		console.log("Value: " + member[property]);
 
+		myMap.set(property.toString(), member[property].toString());
+
 		elem.innerHTML += "<tr><td>" + property + "</td><td>" + member[property] + "</td></tr>";
 	}
 	elem.innerHTML += "</table>"
 
-	
+	return myMap;
+
 }
 
 
