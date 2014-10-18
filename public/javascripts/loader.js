@@ -38,7 +38,7 @@ function enumerate_profile_properties(member)
 
 		myMap.set(property.toString(), member[property].toString());
 
-		elem.innerHTML += "<tr><td>" + property + "</td><td>" + member[property] + "</td></tr>";
+		elem.innerHTML += "<tr><td>" + property + "</td> <td>" + member[property] + "</td></tr> <br>";
 	}
 	elem.innerHTML += "</table>"
 
