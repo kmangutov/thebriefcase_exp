@@ -13,7 +13,9 @@ function onLinkedInAuth() {
 		"specialties",
 		"positions",
 		"picture-url",
-		"public-profile-url"
+		"public-profile-url",
+		"skills",
+		"courses"
 	];
 
 	IN.API.Profile("me").fields(fields).result(displayProfiles);
