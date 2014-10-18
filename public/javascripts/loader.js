@@ -29,7 +29,7 @@ function enumerate_profile_properties(member)
 {
 	var elem = document.getElementById("textarea");
 	elem.innerHTML += "<table>";
-	var myMap = new Ma();
+	var myMap = new Map();
 	var property;
 	for(property in member)
 	{
