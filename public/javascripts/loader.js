@@ -22,21 +22,22 @@ function onLinkedInAuth() {
 function displayProfiles(profiles)
 {
 	member = profiles.values[0];
-  	enumerate_profile_properties(member);
+  	map = enumerate_profile_properties(member);
+	console.log(JSON.stringify(map));
 }
 
 function enumerate_profile_properties(member)
 {
 	var elem = document.getElementById("textarea");
 	elem.innerHTML += "<table>";
-	var myMap = new Map();
-	var property;
+	var myMap = {};
 	for(property in member)
 	{
 		console.log("Name: " + property);
 		console.log("Value: " + member[property]);
 
-		myMap.set(property.toString(), member[property].toString());
+		myMap[property] = member[property];
+		//myMap.set(property.toString(), member[property].toString());
 
 		elem.innerHTML += "<tr><td>" + property + "</td> <td>" + member[property] + "</td></tr> <br>";
 	}
