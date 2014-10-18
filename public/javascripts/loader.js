@@ -29,7 +29,7 @@ function onLinkedInAuth() {
 	"api-standard-profile-request:(url)",
 	"api-standard-profile-request:(headers)",
 	"public-profile-url" ];
-	IN.API.Profile("me").fields()result(displayProfiles); //argument for result is callback function
+	IN.API.Profile("me").fields(fields)result(displayProfiles); //argument for result is callback function
 }
 
 function displayProfiles(profiles)
