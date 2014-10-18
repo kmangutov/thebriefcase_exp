@@ -2,7 +2,34 @@
 function onLinkedInAuth() {
 	console.log("LinkedIn API framework initialized!");
 	//reference: https://developer.linkedin.com/documents/javascript-api-tutorial
-	IN.API.Profile("me").result(displayProfiles); //argument for result is callback function
+	var fields =
+	["id",
+	"first-name",
+	"last-name",
+	"maiden-name",
+	"formatted-name",
+	"phonetic-first-name",
+	"phonetic-last-name",
+	"formatted-phonetic-name",
+	"headline",
+	"location:(name)",
+	"location:(country:code))",
+	"industry",
+	//"distance",
+	//"relation-to-viewer:(distance)",
+	//"relation-to-viewer(related-connections)",
+	"current-share",
+	//"num-connections",
+	//"num-connections-capped",
+	"summary",
+	"specialties",
+	"positions",
+	"picture-url",
+	"site-standard-profile-request",
+	"api-standard-profile-request:(url)",
+	"api-standard-profile-request:(headers)",
+	"public-profile-url" ];
+	IN.API.Profile("me").fields()result(displayProfiles); //argument for result is callback function
 }
 
 function displayProfiles(profiles)
