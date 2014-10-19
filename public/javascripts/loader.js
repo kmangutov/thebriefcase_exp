@@ -11,6 +11,7 @@ function facebookLoggedInCallback(response)
 		$('#picture').attr("src", src);
 
 		var albums = response.albums.data;
+		console.log(JSON.stringify(albums));
 	});
 }
 

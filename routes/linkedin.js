@@ -28,7 +28,7 @@ exports.getLinkedIn = function(req, res) {
 	console.log('Retrieving linkedin data for ' + name);
 	
 	db.collection(tableLinkedIn, function(err, collection) {
-		collection.findOne({uniqueNameKey: uniqueName}, function(err, item) {
+		collection.findOne({uniqueNameKey: name}, function(err, item) {
 			res.send(item);
 		});
 	});
