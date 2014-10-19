@@ -38,6 +38,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/api/linkedin', linkedin.getAllLinkedIn);
+app.get('/api/linkedin/add', linkedin.addLinkedIn);
 app.post('/api/linkedin', linkedin.addLinkedIn);
 
 
