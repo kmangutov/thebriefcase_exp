@@ -11,23 +11,35 @@ function facebookLoggedInCallback(response)
 		
 			
 		var src = response.data.url;
-		//var cover_src = response.cover.source;
-		//console.log("src:" + src);
-		//console.log("cover_src: " + cover_src);
 		$('#picture').attr("src", src);
 
-		//console.log('response:' + JSON.stringify(response));
-		//console.log('response.albums:' + JSON.stringify(response.albums));
-		//var albums = response.albums.data;
-		//console.log(JSON.stringify(albums));
+
+
+
+		
+		//this call is important.. post img src to backend
+		map = {};
+		map[uniqueNameKey] = myKey;
+		map["src"] = src;
+
+		$.post(
+			"/api/facebook",
+			map
+		);
+
+
 	});
+}
 
+function postGithub(data) {
+	map = {};
+	map[uniqueNameKey] = myKey;
+	map["data"] = data;
 
-	//FB.api("/me/cover",
-	//function(response)
-	//{
-	//	console.log(JSON.stringify(response));
-	//});
+	$.post(
+		"/api/github",
+		map
+	);
 }
 
 function getGithubData(name) {
@@ -60,7 +72,15 @@ function onLinkedInAuth() {
 
 	IN.API.Profile("me").fields(fields).result(displayProfiles);
 }
- 
+
+var uniqueNameKey = "uniqueNameKey";
+var myKey = "";
+
+function linkedInSuccess(result) {
+	myKey = result;
+	$("#textarea").html(JSON.stringify(myKey));
+}
+
 function displayProfiles(profiles)
 {
 	member = profiles.values[0];
@@ -69,7 +89,8 @@ function displayProfiles(profiles)
 
 	$.post(
 		"/api/linkedin",
-		map//JSON.stringify(map)
+		map,
+		linkedInSuccess
 	);
 	//post("/api/linkedin/add", JSON.stringify(map));
 }

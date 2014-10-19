@@ -41,6 +41,14 @@ app.get('/api/linkedin/get/:name', linkedin.getLinkedIn);
 app.post('/api/linkedin', linkedin.addLinkedIn);
 app.get('/api/linkedin/all', linkedin.getAllLinkedIn);
 
+app.get('/api/facebook/get/:name', linkedin.getFacebook);
+app.post('/api/facebook', linkedin.addFacebook);
+app.get('/api/facebook/all', linkedin.getAllFacebook);
+
+app.get('/api/github/get/:name', linkedin.getGithub);
+app.post('/api/github', linkedin.addGithub);
+app.get('/api/github/all', linkedin.getAllGithub);
+
 
 app.set('view options', {layout: false});
 app.set('domain', '0.0.0.0');
