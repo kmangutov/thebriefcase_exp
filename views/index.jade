@@ -48,11 +48,12 @@ html.
 
 			function click() {
 				FB.login(function(response){
-					FB.api("/me", {fields: "id,name,picture"}, function(response)
+					FB.api("/me", {fields: "id,name,picture,cover"}, function(response)
 					{
 						console.log(JSON.stringify(response));
 						console.log(response);
 						var src = response.picture.data.url;
+						var cover_src = response.cover.source;
 						console.log("src:" + src);
 						$('#picture').attr("src",src);
 						FB.api(
