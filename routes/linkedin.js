@@ -53,13 +53,15 @@ exports.addLinkedIn = function(req, res) {
 	uniqueName = information["firstName"] + information["lastName"];
 	information[uniqueNameKey] = uniqueName;
 
+	
 	db.collection(tableLinkedIn, function(err, collection) {
-		collection.insert(/*information*/req.body, {safe: true}, function(err, result) {
+		collection.update({uniqueNameKey:uniqueName},req.body, {upsert:true}, function(err, result) {
 			if(err) {
 				res.send({'error':err});
 			} else {
 				console.log('Success: ' + JSON.stringify(result[0]));
-				res.send(result[0]);
+				//res.send(result[0]);
+				res.send(uniqueName);
 			}
 		})
 	});
