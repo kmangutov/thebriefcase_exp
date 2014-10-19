@@ -4,6 +4,8 @@ html.
 
 		<script type="text/javascript" src="javascripts/loader.js"></script>
 
+		<script src="http://connect.facebook.net/en_US/all.js"></script>
+
 		<script type="text/javascript" src="http://platform.linkedin.com/in.js">
 			api_key: 75nhi6gsa4ygff 
 			onLoad: onLinkedInLoad
@@ -19,6 +21,18 @@ html.
 	<script type="IN/Login">
 		Hello, <?js= firstName ?> <?js= lastName ?>.
 	</script>
+
+	<fb:login-button autologoutlink="true" onlogin="OnRequestPermission();">
+	</fb:login-button>
+	<script language="javascript" type="text/javascript">
+	FB.init({
+	    appId: 'Your_Application_ID',
+	    status: true,
+	    cookie: true,
+	    xfbml: true
+	});   
+	</script>
+
 
 	<div id="textarea"></div>
 
