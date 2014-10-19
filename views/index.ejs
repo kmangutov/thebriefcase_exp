@@ -1,0 +1,68 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+
+		<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+		<script type="text/javascript" src="javascripts/loader.js"></script>
+		<script src="http://connect.facebook.net/en_US/all.js"></script>
+
+		<script type="text/javascript" src="http://platform.linkedin.com/in.js">
+			api_key: 75nhi6gsa4ygff 
+			onLoad: onLinkedInLoad
+			authorize: false
+			lang: en_US	
+		</script>
+
+	</head>
+	<body>
+
+	<div id="fb-root"></div>
+	<fb:login-button autologoutlink="true" onlogin="click();"></fb:login-button>
+	<script>
+		window.fbAsyncInit = function() {
+		FB.init({
+		appId      : '1490452234541375',
+		xfbml      : true,
+		version    : 'v2.1',
+		});
+	};
+
+	(function(d, s, id){
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) {return;}
+		js = d.createElement(s); js.id = id;
+		js.src = "//connect.facebook.net/en_US/sdk.js";
+		fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	</script>
+
+	<img id="picture">
+	
+	<script type="text/javascript">
+		$(function(){
+			$('#fags').on('click',
+				function() {
+					console.log('hello fanmin');
+					click();
+				});	
+
+			function click() {
+				FB.login(function(response){
+					facebookLoggedInCallback(response);
+				});
+					
+				}});
+	</script>
+
+
+	<h1>Hello</h1>
+	<button id='fags'>test</button>
+
+	<script type="IN/Login">
+		Hello, <?js= firstName ?> <?js= lastName ?>.
+	</script>
+
+	<div id="textarea"></div>
+
+	</body>
+</html>

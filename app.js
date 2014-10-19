@@ -5,15 +5,21 @@
 
 var express = require('express')
   , routes = require('./routes')
-  , linkedin = require('./routes/linkedin');
+  , linkedin = require('./routes/linkedin')
+  , ejs = require('ejs');
 
 var app = module.exports = express.createServer();
 
 // Configuration
 
+
+
+
 app.configure(function(){
   app.set('views', __dirname + '/views');
-  app.set('view engine', 'jade');
+  //app.register('html', require('ejs').renderFile);
+  //  app.set('view engine', 'jade');
+  app.set('view engine', 'ejs');
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(app.router);
@@ -35,6 +41,10 @@ app.configure('production', function(){
 //app.get('/', routes.index);
 app.get('/', function(req, res) {
 	res.render('index');
+});
+
+app.get('/:template/:key', function(req, res) {
+	res.render('template',{key: req.params.key});
 });
 
 app.get('/api/linkedin/get/:name', linkedin.getLinkedIn);
