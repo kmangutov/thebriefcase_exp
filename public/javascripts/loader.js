@@ -1,15 +1,16 @@
 
-function facebookLoggedInCallback() 
+function facebookLoggedInCallback(response) 
 {
-	FB.api("/me", {fields: "id,name,picture,cover"}, 
+	FB.api("/me", {fields: "id,name,picture,cover,statuses,albums"}, 
 	function(response)
 	{
 		var src = response.picture.data.url;
-		var cover_src = response.cover.source;
+		//var cover_src = response.cover.source;
 		console.log("src:" + src);
-		console.log("cover_src: " + cover_src);
-		$('#picture').attr("src", cover_src);
+		//console.log("cover_src: " + cover_src);
+		$('#picture').attr("src", src);
 
+		var albums = response.albums.data;
 	});
 }
 
@@ -31,7 +32,9 @@ function onLinkedInAuth() {
 		"picture-url",
 		"public-profile-url",
 		"skills",
-		"courses"
+		"courses"//,
+		//"company:(name)",
+		//"positions:(title)"
 	];
 
 	IN.API.Profile("me").fields(fields).result(displayProfiles);
@@ -44,7 +47,7 @@ function displayProfiles(profiles)
 	console.log(JSON.stringify(map));
 
 	$.post(
-		"/api/linkedin/add/",
+		"/api/linkedin",
 		JSON.stringify(map)
 	);
 	//post("/api/linkedin/add", JSON.stringify(map));
@@ -52,23 +55,12 @@ function displayProfiles(profiles)
 
 function enumerate_profile_properties(member)
 {
-	var elem = document.getElementById("textarea");
-	elem.innerHTML += "<table>";
 	var myMap = {};
 	for(property in member)
 	{
-		console.log("Name: " + property);
-		console.log("Value: " + member[property]);
-
 		myMap[property] = member[property];
-		//myMap.set(property.toString(), member[property].toString());
-
-		elem.innerHTML += "<tr><td>" + property + "</td> <td>" + member[property] + "</td></tr> <br>";
 	}
-	elem.innerHTML += "</table>"
-
 	return myMap;
-
 }
 
 

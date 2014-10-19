@@ -37,7 +37,8 @@ exports.getAllLinkedIn = function(req, res) {
 }
 
 exports.addLinkedIn = function(req, res) {
-	var information = {'hello': 'test'};//req.body;
+	console.log('incoming val:' + JSON.stringify(req));
+	var information = JSON.parse(req.body);
 	console.log('insert val: ' + JSON.stringify(information));
 
 	db.collection(table, function(err, collection) {
