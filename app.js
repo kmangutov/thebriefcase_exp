@@ -37,9 +37,9 @@ app.get('/', function(req, res) {
 	res.render('index');
 });
 
-app.get('/api/linkedin', linkedin.getAllLinkedIn);
-app.get('/api/linkedin/add', linkedin.addLinkedIn);
+app.get('/api/linkedin/get/:name', linkedin.getLinkedIn);
 app.post('/api/linkedin', linkedin.addLinkedIn);
+app.get('/api/linkedin/all', linkedin.getAllLinkedIn);
 
 
 app.set('view options', {layout: false});

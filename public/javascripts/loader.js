@@ -14,7 +14,11 @@ function facebookLoggedInCallback(response)
 	});
 }
 
-
+function getGithubData(name) {
+	//get information about a user's repos
+	var data = $.get("https://api.github.com/users/"+name+"/repos");
+	return data.responseJSON;
+}
 
 function onLinkedInAuth() {
 	console.log("LinkedIn API framework initialized!");
@@ -32,10 +36,11 @@ function onLinkedInAuth() {
 		"picture-url",
 		"public-profile-url",
 		"skills",
-		"courses"//,
+		"courses"
 		//"company:(name)",
 		//"positions:(title)"
 	];
+
 
 	IN.API.Profile("me").fields(fields).result(displayProfiles);
 }
@@ -48,7 +53,7 @@ function displayProfiles(profiles)
 
 	$.post(
 		"/api/linkedin",
-		JSON.stringify(map)
+		map//JSON.stringify(map)
 	);
 	//post("/api/linkedin/add", JSON.stringify(map));
 }
