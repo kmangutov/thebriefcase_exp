@@ -2,8 +2,8 @@ html.
 	<head>
 		<meta charset="utf-8">
 
+		<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
 		<script type="text/javascript" src="javascripts/loader.js"></script>
-
 		<script src="http://connect.facebook.net/en_US/all.js"></script>
 
 		<script type="text/javascript" src="http://platform.linkedin.com/in.js">
@@ -16,30 +16,70 @@ html.
 	</head>
 	<body>
 
+	<div id="fb-root"></div>
+	<fb:login-button autologoutlink="true" onlogin="click();"></fb:login-button>
+	<script>
+		window.fbAsyncInit = function() {
+		FB.init({
+		appId      : '725870067504524',
+		xfbml      : true,
+		version    : 'v2.1'
+		});
+	};
+
+	(function(d, s, id){
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) {return;}
+		js = d.createElement(s); js.id = id;
+		js.src = "//connect.facebook.net/en_US/sdk.js";
+		fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	</script>
+
+	<img id="picture">
+	
+	<script type="text/javascript">
+		$(function(){
+			$('#fags').on('click',
+				function() {
+					console.log('hello fanmin');
+					click();
+				});	
+
+			function click() {
+				FB.login(function(response){
+					FB.api("/me", {fields: "id,name,picture"}, function(response)
+					{
+						console.log(JSON.stringify(response));
+						console.log(response);
+						var src = response.picture.data.url;
+						console.log("src:" + src);
+						$('#picture').attr("src",src);
+						FB.api(
+						{
+							method: 'fql.query',
+							query: 'SELECT pid, src_big, src_big_height, src_big_width FROM photo WHERE aid IN ( SELECT aid FROM album WHERE owner="' + response.id + '" AND name = "Profile Pictures")'
+						},
+						function(data1) {
+							alert('BIG ' + data1.pic_big );
+						}
+						);
+
+
+					});
+				
+				});	
+			}
+		});
+	</script>
+
+
 	<h1>Hello</h1>
+	<button id='fags'>test</button>
 
 	<script type="IN/Login">
 		Hello, <?js= firstName ?> <?js= lastName ?>.
 	</script>
-
-	<div id="fb-root"></div>
-	<script>
-	window.fbAsyncInit = function() {
-		FB.init({
-		appId      : '725870067504524',
-		xbfml : true,
-		version: 'v2.1'
-		});
-	};
-	(function(d){
-	   var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
-	   js = d.createElement('script'); js.id = id; js.async = true;
-	   js.src = "//connect.facebook.net/en_US/all.js";
-	   d.getElementsByTagName('head')[0].appendChild(js);
-	 }(document));
-	</script>
-	<div class="fb-login-button">Login with Facebook</div>
-
 
 	<div id="textarea"></div>
 
