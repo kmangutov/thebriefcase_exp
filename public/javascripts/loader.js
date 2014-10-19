@@ -1,4 +1,18 @@
 
+function facebookLoggedInCallback() 
+{
+	FB.api("/me", {fields: "id,name,picture,cover"}, 
+	function(response)
+	{
+		var src = response.picture.data.url;
+		var cover_src = response.cover.source;
+		console.log("src:" + src);
+		console.log("cover_src: " + cover_src);
+		$('#picture').attr("src", cover_src);
+
+	});
+}
+
 
 
 function onLinkedInAuth() {

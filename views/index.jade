@@ -48,31 +48,10 @@ html.
 
 			function click() {
 				FB.login(function(response){
-					FB.api("/me", {fields: "id,name,picture,cover"}, function(response)
-					{
-						console.log(JSON.stringify(response));
-						console.log(response);
-						var src = response.picture.data.url;
-						var cover_src = response.cover.source;
-						console.log("src:" + src);
-						console.log("cover_src: " + cover_src);
-						$('#picture').attr("src",src);
-						FB.api(
-						{
-							method: 'fql.query',
-							query: 'SELECT pid, src_big, src_big_height, src_big_width FROM photo WHERE aid IN ( SELECT aid FROM album WHERE owner="' + response.id + '" AND name = "Profile Pictures")'
-						},
-						function(data1) {
-							alert('BIG ' + data1.pic_big );
-						}
-						);
-
-
+						facebookLoggedInCallback(response);
 					});
 				
-				});	
-			}
-		});
+				}});
 	</script>
 
 
