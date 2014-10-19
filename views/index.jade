@@ -17,13 +17,13 @@ html.
 	<body>
 
 	<div id="fb-root"></div>
-	<fb:login-button scope="public_profile,albums" autologoutlink="true" onlogin="click();"></fb:login-button>
+	<fb:login-button autologoutlink="true" onlogin="click();"></fb:login-button>
 	<script>
 		window.fbAsyncInit = function() {
 		FB.init({
-		appId      : '944702545544443',//'725870067504524',
+		appId      : '1490452234541375',
 		xfbml      : true,
-		version    : 'v2.1'
+		version    : 'v2.1',
 		});
 	};
 
@@ -48,8 +48,8 @@ html.
 
 			function click() {
 				FB.login(function(response){
-						facebookLoggedInCallback(response);
-					}, {scope: 'albums', auth_type: 'rerequest'});
+					facebookLoggedInCallback(response);
+				});
 					
 				}});
 	</script>

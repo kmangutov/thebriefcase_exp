@@ -1,24 +1,24 @@
 
 function facebookLoggedInCallback(response) 
 {
-	FB.api("/me", {fields: "id,name,picture,cover,statuses,albums"}, 
-	//FB.api("/me/photos",
+	FB.api("/me", {fields: "id,name,picture,cover,statuses,albums,photos"}, 
+	//FB.api("/me/statuses",
 	function(response)
 	{
 		console.log('response: ' + JSON.stringify(response));
 		
-		/*	
-		var src = response.picture.data.url;
+			
+		//var src = response.picture.data.url;
 		//var cover_src = response.cover.source;
-		console.log("src:" + src);
+		//console.log("src:" + src);
 		//console.log("cover_src: " + cover_src);
 		$('#picture').attr("src", src);
 
-		console.log('response:' + JSON.stringify(response));
+		//console.log('response:' + JSON.stringify(response));
 		//console.log('response.albums:' + JSON.stringify(response.albums));
 		//var albums = response.albums.data;
 		//console.log(JSON.stringify(albums));
-	*/});
+	});
 }
 
 function getGithubData(name) {
